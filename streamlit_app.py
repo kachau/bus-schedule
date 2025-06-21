@@ -28,8 +28,8 @@ def show_eta(t):
     secs = int(t)
     mm = (secs//60)+1
     if mm == 1:
-        return st.metric("Estimated Time", f"{mm:d} min")
-    return st.metric("Estimated Time", f"{mm:d} mins")
+        return st.metric(message["Estimated Time"][lang], f"{mm:d} min")
+    return st.metric(message["Estimated Time"][lang], f"{mm:d} mins")
 
 lang_map = {
     "en": "En",
@@ -51,6 +51,7 @@ message = {
     "Search Bus Route": {"en": "Search Bus Route", "tc": "搜尋巴士線", "sc": "搜寻巴士线"},
     "Reverse Route": {"en": "Reverse Route", "tc": "對面線", "sc": "对面线"},
     "Select a stop": {"en": "Select a stop", "tc": "選擇巴士站", "sc": "选择巴士站"},
+    "Estimated Time": {"en": "Estimated Time", "tc": "預計時間", "sc": "预计时间"},
 }
 
 url = "https://data.etabus.gov.hk/v1/transport/kmb/route/"
