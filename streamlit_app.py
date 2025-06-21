@@ -3,7 +3,7 @@ import requests
 from datetime import datetime, timezone
 from streamlit_autorefresh import st_autorefresh
 
-st_autorefresh(interval=30 * 1000)
+st_autorefresh(interval=30 * 1000) # refresh every 30 seconds
 
 # api source: https://data.gov.hk/en-data/dataset/hk-td-tis_21-etakmb
 
