@@ -46,19 +46,25 @@ lang = st.segmented_control(
 
 if not lang:
     lang="en" # if no default value or removed the selection, set "en"
-    
+
+message = {
+    "Search Bus Route": {"en": "Search Bus Route", "tc": "搜尋巴士線", "sc": "搜寻巴士线"},
+    "Reverse Route": {"en": "Reverse Route", "tc": "對面線", "sc": "对面线"},
+    "Select a stop": {"en": "Select a stop", "tc": "選擇巴士站", "sc": "选择巴士站"},
+}
+
 url = "https://data.etabus.gov.hk/v1/transport/kmb/route/"
 routes_data = load_data(url)
 routes = sorted(list(set([r["route"] for r in routes_data])))
 
 bus_list = st.multiselect(
-    "Search Bus Route",
+    message["Search Bus Route"][lang],
     routes
 )
 
 for bus in bus_list:
     with st.expander(f"{bus}"):
-        inbound = st.toggle("Reverse Route",label_visibility="visible", key=bus+" bound")
+        inbound = st.toggle(message["Reverse Route"][lang],label_visibility="visible", key=bus+" bound")
         
         if inbound:
             url1 = f"https://data.etabus.gov.hk/v1/transport/kmb/route/{bus}/inbound/1"
@@ -86,7 +92,7 @@ for bus in bus_list:
             
             # select the stop
             bus_stop_id = st.select_slider(
-                "Select a stop",
+                message["Select a stop"][lang],
                 options=stop_ids, key = f"{bus} stop slider",
                 format_func = lambda x: " ".join(stops_info[x].title().split()[:-1]),
             )
